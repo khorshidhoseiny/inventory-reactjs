@@ -1,6 +1,13 @@
-import { useState } from "react";
 
-const Filter = ({ sort, search, onSort, onSearch }) => {
+const Filter = ({
+  sort,
+  search,
+  onSort,
+  selectedCategory,
+  onSelect,
+  onSearch,
+  categories,
+}) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
@@ -33,6 +40,37 @@ const Filter = ({ sort, search, onSort, onSearch }) => {
           <option className="bg-slate-500 text-slate-300" value="earliest">
             earliest
           </option>
+        </select>
+      </div>
+      <div className="flex items-center justify-between mb-6">
+        <label htmlFor="sort-products" className="text-slate-500 text-lg">
+          Category
+        </label>
+        <select
+          name="sort-products"
+          onChange={onSelect}
+          id="sort-products"
+          className="bg-transparent text-slate-400 rounded-xl"
+          value={selectedCategory}
+
+        >
+          <option
+            className="bg-slate-500 text-slate-300"
+            value=""
+          >
+            All
+          </option>
+          {categories.map((category) => {
+            return (
+              <option
+                className="bg-slate-500 text-slate-300"
+                key={category.id}
+                value={category.id}
+              >
+                {category.title}
+              </option>
+            );
+          })}
         </select>
       </div>
     </div>

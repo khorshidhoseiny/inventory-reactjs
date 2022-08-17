@@ -11,7 +11,7 @@ const ProductList = ({ products, categoryList, setProductList }) => {
 
   return (
     <div>
-      <h1 className="text-white">ProductList</h1>
+      <h1 className="text-xl text-slate-300 font-bold mb-2">ProductList</h1>
       <div className="overflow-x-auto">
         {products.map((product) => {
           return (
