@@ -13,26 +13,43 @@ function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    let result=productList;
-    result=FilterTitleProducts(result);
-    result=SortDate(result);
+    const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+    const savedCategories =
+      JSON.parse(localStorage.getItem("categories")) || [];
+    setProductList(savedProducts);
+    setCategoryList(savedCategories);
+  }, []);
+
+  useEffect(() => {
+    if (productList.length) {
+      localStorage.setItem("products", JSON.stringify(productList));
+    }
+  }, [productList]);
+
+  useEffect(() => {
+    if (categoryList.length) {
+      localStorage.setItem("categories", JSON.stringify(categoryList));
+    }
+  }, [categoryList]);
+
+  useEffect(() => {
+    let result = productList;
+    result = FilterTitleProducts(result);
+    result = SortDate(result);
     setFilterProduct(result);
   }, [productList, sort, search]);
 
   const searchProducts = (e) => {
     setSearch(e.target.value.trim().toLowerCase());
     console.log(search);
-
   };
   const sortProducts = (e) => {
     setSort(e.target.value);
-    
   };
-
   const FilterTitleProducts = (array) => {
     return array.filter((p) => p.title.toLowerCase().includes(search));
   };
-  const SortDate=(array)=>{
+  const SortDate = (array) => {
     if (sort === "latest") {
       return array.sort((a, b) => {
         return new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1;
@@ -42,8 +59,7 @@ function App() {
         return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
       });
     }
-
-  }
+  };
 
   return (
     <>
