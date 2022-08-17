@@ -2,9 +2,11 @@ import { useState } from "react";
 import "./App.css";
 import CategoryForm from "./components/CategoryForm";
 import ProductForm from "./components/ProductForm";
+import ProductList from "./components/ProductList";
 
 function App() {
   const [categoryList, setCategoryList] = useState([]);
+  const [productList, setProductList] = useState([]);
   return (
     <>
       <div className="bg-slate-800 min-h-screen ">
@@ -18,7 +20,8 @@ function App() {
         </div>
         <div className="container max-w-screen-sm mx-auto p-4">
           <CategoryForm setCategoryList={setCategoryList} />
-          <ProductForm categoryList={categoryList}/>
+          <ProductForm categoryList={categoryList} setProductList={setProductList}/>
+          <ProductList products={productList}/>
         </div>
       </div>
     </>

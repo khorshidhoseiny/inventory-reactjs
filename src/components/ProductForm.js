@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-const ProductForm = ({ categoryList }) => {
+const ProductForm = ({ categoryList,setProductList}) => {
   const [productFormData, setProductFormData] = useState({
     title: "",
     quantity: "",
     categoryId: "",
   });
-  const [productList, setProductList] = useState([]);
+  
 
   const addNewProduct = (e) => {
     e.preventDefault();
