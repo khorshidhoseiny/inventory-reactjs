@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import CategoryForm from "./components/CategoryForm";
+import ProductForm from "./components/ProductForm";
 
 function App() {
+  const [categoryList, setCategoryList] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="bg-slate-800 min-h-screen ">
+        <div className="h-12 flex items-center justify-center gap-x-4 bg-slate-700 mb-6">
+          <h1 className="md:text-xl text-sm font-bold text-slate-300">
+            Inventory App using tailwind & ReactJs
+          </h1>
+          <span className="bg-slate-600 w-6 rounded-full flex justify-center text-slate-300 ring ring-slate-300  items-center font-bold">
+            7
+          </span>
+        </div>
+        <div className="container max-w-screen-sm mx-auto p-4">
+          <CategoryForm setCategoryList={setCategoryList} />
+          <ProductForm categoryList={categoryList}/>
+        </div>
+      </div>
+    </>
   );
 }
 
